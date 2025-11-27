@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Murach's Java Servlets and JSP</title>
-    <link rel="stylesheet" href="style03.css" type="text/css"/>
+    <link rel="stylesheet" href="style02.css" type="text/css"/>
 </head>
 <body>
 

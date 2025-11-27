@@ -1,5 +1,5 @@
 # Sử dụng Tomcat 9 với Java 11
-FROM tomcat:9.0-jdk11-openjdk
+FROM tomcat:9.0-jdk17-openjdk
 
 # Xóa các ứng dụng mặc định của Tomcat cho nhẹ (tùy chọn)
 RUN rm -rf /usr/local/tomcat/webapps/*

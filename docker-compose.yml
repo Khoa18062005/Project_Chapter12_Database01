@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # 1. Database Service (Đặt tên là mysqldb)
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Khoa18062005  # Đã khớp với code Java
+      MYSQL_DATABASE: database01         # Đã khớp với code Java
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # 2. Web App Service
+  webapp:
+    build: .  # Dấu chấm này bảo Docker tìm file 'Dockerfile' ngay tại thư mục này
+    container_name: java_webapp_container
+    restart: always
+    ports:
+      - "80:8080" # Chạy xong vào web bằng http://localhost
+    depends_on:
+      - mysqldb
+    environment:
+      DB_URL: jdbc:mysql://mysqldb:3306/database01
+
+volumes:
+  db_data:

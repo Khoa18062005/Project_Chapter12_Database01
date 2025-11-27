@@ -1,0 +1,186 @@
+/* 1. Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap');
+
+/* 2. Thiết lập nền Gradient Xanh Lá chủ đạo */
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Gradient từ Xanh lá đậm sang Xanh rêu tối - Tạo cảm giác thiên nhiên, chiều sâu */
+    background: linear-gradient(135deg, #2e7d32 0%, #052e16 100%);
+    background-attachment: fixed;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #444;
+}
+
+/* 3. Tiêu đề và Văn bản bên ngoài */
+h1 {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+body > p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 300;
+}
+
+/* Label tiêu đề nhỏ */
+p b {
+    color: #fff;
+    font-weight: 600;
+    background: rgba(76, 175, 80, 0.25); /* Nền xanh trong suốt */
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 4. Form Container */
+form {
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    animation: slideUp 0.5s ease-out;
+    border-top: 5px solid #2e7d32; /* Đường viền xanh nhấn mạnh trên cùng */
+}
+
+/* 5. Textarea - Dark Mode nhưng focus màu xanh */
+textarea {
+    width: 100%;
+    background-color: #1e1e1e;
+    color: #f8f8f2;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: all 0.3s;
+    line-height: 1.5;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #43a047; /* Xanh lá tươi khi focus */
+    box-shadow: 0 0 10px rgba(67, 160, 71, 0.3);
+}
+
+/* 6. Nút bấm - Green Gradient */
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    /* Gradient xanh rực rỡ */
+    background: linear-gradient(90deg, #2e7d32 0%, #66bb6a 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.6);
+    background: linear-gradient(90deg, #1b5e20 0%, #43a047 100%);
+}
+
+input[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* 7. Bảng kết quả */
+table {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 25px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: fadeIn 0.8s ease;
+}
+
+th {
+    background: #2e7d32; /* Xanh đậm cho tiêu đề bảng */
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f8e9; /* Màu xanh rất nhạt (Light Green 50) xen kẽ */
+}
+
+tr:hover {
+    background-color: #c8e6c9; /* Highlight màu xanh nhạt khi di chuột */
+    transition: background-color 0.2s;
+}
+
+/* Kết quả dạng text */
+body > p:last-of-type,
+div[align="center"] {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    color: #1b5e20; /* Xanh đậm cho chữ kết quả */
+    border-left: 5px solid #2e7d32;
+}
+
+/* Animation */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

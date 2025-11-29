@@ -17,11 +17,12 @@ public class SqlGatewayServlet extends HttpServlet {
         String sqlResult = "";
         try {
             // load the driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
             // get a connection
-            String dbURL = "jdbc:mysql://localhost:3306/database01";
-            String username = "root";
-            String password = "Khoa18062005";
+            String dbURL = "jdbc:mysql://mysql-chapter12-ltw-nguyenquockhoa00725005-1806.g.aivencloud.com:17861/database01?useSSL=true&requireSSL=true&serverTimezone=UTC";
+            String username = System.getenv("DB_USER");
+            String password = System.getenv("DB_PASS");
             Connection connection = DriverManager.getConnection(
                     dbURL, username, password);
 
@@ -32,7 +33,6 @@ public class SqlGatewayServlet extends HttpServlet {
             sqlStatement = sqlStatement.trim();
             if (sqlStatement.length() >= 6) {
                 String sqlType = sqlStatement.substring(0, 6);
-
                 if (sqlType.equalsIgnoreCase("select")) {
                     // create the HTML for the result set
                     ResultSet resultSet
@@ -54,12 +54,13 @@ public class SqlGatewayServlet extends HttpServlet {
             statement.close();
             connection.close();
         } catch (ClassNotFoundException e) {
-            sqlResult = "<p>Error loading the database driver: <br>"
+            sqlResult = "<p>Error loading the databse driver: <br>"
                     + e.getMessage() + "</p>";
         } catch (SQLException e) {
             sqlResult = "<p>Error executing the SQL statement: <br>"
                     + e.getMessage() + "</p>";
         }
+
         HttpSession session = request.getSession();
         session.setAttribute("sqlResult", sqlResult);
         session.setAttribute("sqlStatement", sqlStatement);

@@ -2,16 +2,17 @@ package murach.sql;
 
 import java.sql.*;
 
-public class SQLUtil {
-
+public class SQLUtil
+{
     public static String getHtmlTable(ResultSet results)
-            throws SQLException {
-
+            throws SQLException
+    {
         StringBuilder htmlTable = new StringBuilder();
         ResultSetMetaData metaData = results.getMetaData();
         int columnCount = metaData.getColumnCount();
 
         htmlTable.append("<table>");
+
         // add header row
         htmlTable.append("<tr>");
         for (int i = 1; i <= columnCount; i++) {
@@ -22,7 +23,8 @@ public class SQLUtil {
         htmlTable.append("</tr>");
 
         // add all other rows
-        while (results.next()) {
+        while (results.next())
+        {
             htmlTable.append("<tr>");
             for (int i = 1; i <= columnCount; i++) {
                 htmlTable.append("<td>");

@@ -1,27 +1,25 @@
-# Stage 1: Build the app using Maven (this creates the WAR file)
-FROM maven:3.8.1-openjdk-17-slim AS builder
-
-# Set the working directory inside the container for the build
+# Stage 1: Build WAR với Maven + JDK
+FROM maven:3.9.2-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy all your project files (pom.xml, src, etc.) into the container
-COPY . .
+# Copy pom và source
+COPY pom.xml .
+COPY src ./src
 
-# Run Maven to clean and build the WAR file (skip tests to speed up)
+# Build project tạo file WAR trong target/
 RUN mvn clean package -DskipTests
 
-# Stage 2: Runtime environment with Tomcat (smaller image, no build tools)
-FROM tomcat:9.0-jdk17-corretto
+# Stage 2: Runtime với Tomcat
+FROM tomcat:10.1.15-jdk17
 
-# Remove Tomcat's default webapps to avoid conflicts
+# Xoá webapps mặc định
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy the built WAR file from Stage 1 into Tomcat's webapps folder
-# Adjust the WAR name if your pom.xml uses a different artifactId/version
-COPY --from=builder /app/target/Project_Chapter12.war /usr/local/tomcat/webapps/ROOT.war
+# Copy WAR từ stage build
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port 8080 (Tomcat's default port for HTTP)
+# Mở port 8080
 EXPOSE 8080
-#
-# Command to start Tomcat when the container runs
+
+# Start Tomcat
 CMD ["catalina.sh", "run"]

@@ -10,7 +10,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Runtime với Tomcat
-FROM tomcat:10.1.15-jdk17
+FROM tomcat:9.0-jdk17-corretto
 
 # Xoá webapps mặc định
 RUN rm -rf /usr/local/tomcat/webapps/*
